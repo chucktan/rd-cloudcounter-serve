@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rd.cloudcounter.mapper.ApplyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.rd.cloudcounter.pojo.ApplyInfo" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="applyID" property="applyID" jdbcType="VARCHAR" />
+    <result column="applyUserID" property="applyUserID" jdbcType="INTEGER" />
+    <result column="applyProID" property="applyProID" jdbcType="INTEGER" />
+    <result column="applyName" property="applyName" jdbcType="VARCHAR" />
+    <result column="CertID" property="CertID" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="aptType" property="aptType" jdbcType="INTEGER" />
+    <result column="aptTypeName" property="aptTypeName" jdbcType="VARCHAR" />
+    <result column="aptTime" property="aptTime" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>
