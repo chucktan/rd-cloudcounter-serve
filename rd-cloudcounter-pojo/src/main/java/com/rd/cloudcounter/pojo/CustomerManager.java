@@ -12,7 +12,7 @@ public class CustomerManager {
      */
     @Id
     @Column(name = "managerID")
-    private Integer managerID;
+    private String managerID;
 
     /**
      * 行内员工ID
@@ -88,9 +88,10 @@ public class CustomerManager {
     /**
      * 获取客户经理ID
      *
+     *
      * @return managerID - 客户经理ID
      */
-    public Integer getManagerid() {
+    public String getManagerid() {
         return managerID;
     }
 
@@ -99,7 +100,7 @@ public class CustomerManager {
      *
      * @param managerid 客户经理ID
      */
-    public void setManagerid(Integer managerid) {
+    public void setManagerid(String managerid) {
         this.managerID = managerid;
     }
 

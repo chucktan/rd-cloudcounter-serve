@@ -18,13 +18,13 @@ public class ApplyInfo {
      * 申请人ID
      */
     @Column(name = "applyUserID")
-    private Integer applyUserID;
+    private String applyUserID;
 
     /**
      * 申请产品ID
      */
     @Column(name = "applyProID")
-    private Integer applyProID;
+    private String applyProID;
 
     /**
      * 申请人姓名
@@ -118,7 +118,7 @@ public class ApplyInfo {
      *
      * @return applyUserID - 申请人ID
      */
-    public Integer getApplyuserid() {
+    public String getApplyuserid() {
         return applyUserID;
     }
 
@@ -127,7 +127,7 @@ public class ApplyInfo {
      *
      * @param applyuserid 申请人ID
      */
-    public void setApplyuserid(Integer applyuserid) {
+    public void setApplyuserid(String applyuserid) {
         this.applyUserID = applyuserid;
     }
 
@@ -136,7 +136,7 @@ public class ApplyInfo {
      *
      * @return applyProID - 申请产品ID
      */
-    public Integer getApplyproid() {
+    public String getApplyproid() {
         return applyProID;
     }
 
@@ -145,7 +145,7 @@ public class ApplyInfo {
      *
      * @param applyproid 申请产品ID
      */
-    public void setApplyproid(Integer applyproid) {
+    public void setApplyproid(String applyproid) {
         this.applyProID = applyproid;
     }
 

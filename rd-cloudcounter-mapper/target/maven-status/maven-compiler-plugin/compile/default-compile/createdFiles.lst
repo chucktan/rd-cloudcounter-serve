@@ -1,0 +1,7 @@
+com\rd\cloudcounter\mapper\UserInfoMapper.class
+com\rd\cloudcounter\mapper\ShareInfoMapper.class
+com\rd\cloudcounter\mapper\CustomerManagerMapper.class
+com\rd\cloudcounter\my\mapper\MyMapper.class
+com\rd\cloudcounter\mapper\ApplyInfoMapper.class
+com\rd\cloudcounter\mapper\ProductDetailMapper.class
+com\rd\cloudcounter\mapper\ProductInfoMapper.class

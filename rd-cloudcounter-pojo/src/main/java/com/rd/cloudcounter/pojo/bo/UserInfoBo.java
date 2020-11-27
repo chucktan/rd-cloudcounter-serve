@@ -17,8 +17,8 @@ public class UserInfoBo {
 
 
     //TODO 微信获取用户头像的方法未知，须整改
-    @ApiModelProperty(value = "用户头像",name = "userImgUrl",example = "",required = true)
-    private String userImgUrl;
+//    @ApiModelProperty(value = "用户头像",name = "userImgUrl",example = "",required = true)
+//    private String userImgUrl;
 
     public String getUserName() {
         return userName;
@@ -28,11 +28,4 @@ public class UserInfoBo {
         this.userName = userName;
     }
 
-    public String getUserImgUrl() {
-        return userImgUrl;
-    }
-
-    public void setUserImgUrl(String userImgUrl) {
-        this.userImgUrl = userImgUrl;
-    }
 }

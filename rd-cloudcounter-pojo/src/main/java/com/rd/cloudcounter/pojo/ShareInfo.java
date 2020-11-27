@@ -18,13 +18,13 @@ public class ShareInfo {
      * 分享人ID
      */
     @Column(name = "shareUserID")
-    private Integer shareUserID;
+    private String shareUserID;
 
     /**
      * 被分享客户经理ID
      */
     @Column(name = "sharedMangerID")
-    private Integer sharedMangerID;
+    private String sharedMangerID;
 
     /**
      * 分享链接
@@ -91,7 +91,7 @@ public class ShareInfo {
      *
      * @return shareUserID - 分享人ID
      */
-    public Integer getShareuserid() {
+    public String getShareuserid() {
         return shareUserID;
     }
 
@@ -100,7 +100,7 @@ public class ShareInfo {
      *
      * @param shareuserid 分享人ID
      */
-    public void setShareuserid(Integer shareuserid) {
+    public void setShareuserid(String shareuserid) {
         this.shareUserID = shareuserid;
     }
 
@@ -109,7 +109,7 @@ public class ShareInfo {
      *
      * @return sharedMangerID - 被分享客户经理ID
      */
-    public Integer getSharedmangerid() {
+    public String getSharedmangerid() {
         return sharedMangerID;
     }
 
@@ -118,7 +118,7 @@ public class ShareInfo {
      *
      * @param sharedmangerid 被分享客户经理ID
      */
-    public void setSharedmangerid(Integer sharedmangerid) {
+    public void setSharedmangerid(String sharedmangerid) {
         this.sharedMangerID = sharedmangerid;
     }
 

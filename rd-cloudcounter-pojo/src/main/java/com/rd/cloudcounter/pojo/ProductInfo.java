@@ -12,7 +12,7 @@ public class ProductInfo {
      */
     @Id
     @Column(name = "productID")
-    private Integer productID;
+    private String productID;
 
     /**
      * 产品类别
@@ -33,12 +33,12 @@ public class ProductInfo {
     private String productName;
 
     /**
-     * 产品简介 主页图片
+     * 产品简介
      */
     private String introduce;
 
     /**
-     * 产品简介显示图片 详情页图片
+     * 产品简介显示图片
      */
     @Column(name = "intrImgUrl")
     private String intrImgUrl;
@@ -102,7 +102,7 @@ public class ProductInfo {
      *
      * @return productID - 产品ID
      */
-    public Integer getProductid() {
+    public String getProductid() {
         return productID;
     }
 
@@ -111,7 +111,7 @@ public class ProductInfo {
      *
      * @param productid 产品ID
      */
-    public void setProductid(Integer productid) {
+    public void setProductid(String productid) {
         this.productID = productid;
     }
 

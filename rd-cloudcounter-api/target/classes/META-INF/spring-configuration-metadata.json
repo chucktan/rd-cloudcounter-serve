@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "file",
+      "type": "com.rd.cloudcounter.resource.FileUpload",
+      "sourceType": "com.rd.cloudcounter.resource.FileUpload"
+    }
+  ],
+  "properties": [
+    {
+      "name": "file.image-manager-face-location",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.FileUpload"
+    },
+    {
+      "name": "file.image-server-url",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.FileUpload"
+    }
+  ],
+  "hints": []
+}

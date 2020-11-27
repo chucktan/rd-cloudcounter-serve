@@ -18,7 +18,7 @@ public class ProductDetail {
      * 产品ID
      */
     @Column(name = "productID")
-    private Integer productID;
+    private String productID;
 
     /**
      * 描述名称
@@ -91,7 +91,7 @@ public class ProductDetail {
      *
      * @return productID - 产品ID
      */
-    public Integer getProductid() {
+    public String getProductid() {
         return productID;
     }
 
@@ -100,7 +100,7 @@ public class ProductDetail {
      *
      * @param productid 产品ID
      */
-    public void setProductid(Integer productid) {
+    public void setProductid(String productid) {
         this.productID = productid;
     }
 

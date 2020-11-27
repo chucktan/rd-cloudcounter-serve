@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rd.cloudcounter.mapper.ProductMapperCustom" >
+    <resultMap id="myTopThreeProInfo" type="com.rd.cloudcounter.pojo.vo.ProInfoVo" >
+
+        <id column="productID" property="productID" jdbcType="VARCHAR" />
+        <result column="productType" property="productType" jdbcType="INTEGER" />
+        <result column="productTypeName" property="productTypeName" jdbcType="VARCHAR" />
+        <result column="productName" property="productName" jdbcType="VARCHAR" />
+        <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+        <result column="intrImgUrl" property="intrImgUrl" jdbcType="VARCHAR" />
+        <result column="hotSum" property="hotSum" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getProListTopThree" resultMap="myTopThreeProInfo" parameterType="int">
+    SELECT
+        pi.productID,
+        pi.productType,
+        pi.productTypeName,
+        pi.productName,
+        pi.introduce,
+        pi.intrImgUrl,
+        sum( viewNum + shareNum + applyNum ) as hotsum
+    FROM
+        product_info pi
+    WHERE
+        <if test="proType != 0">
+            pi.productType = #{proType} and
+        </if>
+        pi.isValid = '1'
+        GROUP BY pi.productID
+    ORDER BY
+        hotsum DESC
+        LIMIT 0,3
+    </select>
+
+
+    <resultMap id="proDetailsVo" type="com.rd.cloudcounter.pojo.vo.ProListVo">
+        <id column="productID" property="productID" jdbcType="VARCHAR" />
+        <result column="proImgUrl" property="proImgUrl" jdbcType="VARCHAR" />
+        <result column="viewNum" property="viewNum" jdbcType="INTEGER" />
+        <result column="shareNum" property="shareNum" jdbcType="INTEGER" />
+        <result column="applyNum" property="applyNum" jdbcType="INTEGER" />
+        
+        <collection property="productDetailList" ofType="com.rd.cloudcounter.pojo.vo.ProDetailsVo">
+            <id column="intrID" property="intrID" jdbcType="VARCHAR" />
+            <result column="intrName" property="intrName" jdbcType="VARCHAR" />
+            <result column="intrDetail" property="intrDetail" jdbcType="VARCHAR" />
+            <result column="intrImgUrl" property="intrImgUrl" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+    <select id="getProDetails" resultMap="proDetailsVo" parameterType="Map">
+        SELECT
+            pi.productID,
+            pi.proImgUrl,
+            pi.viewNum,
+            pi.shareNum,
+            pi.applyNum,
+            pd.intrID,
+            pd.intrName,
+            pd.intrDetail,
+            pd.intrImgUrl
+        FROM
+            product_info pi,
+            product_detail pd
+        WHERE
+            pi.productID = pd.productID
+            AND pi.isValid = '1'
+            AND pd.isValid = '1'
+            AND pi.productID = #{paramsMap.proId}
+            ORDER BY pd.intrID asc
+    </select>
+
+    <update id="incProShareNum">
+        UPDATE product_info
+        SET shareNum = shareNum + #{incSum}
+        WHERE
+	    productID = #{proId}
+    </update>
+
+    <update id="incProViewNum">
+        UPDATE product_info
+        SET viewNum = viewNum + #{incSum}
+        WHERE
+	    productID = #{proId}
+    </update>
+
+    <update id="incProApplyNum">
+        UPDATE product_info
+        SET applyNum = applyNum + #{incSum}
+        WHERE
+	    productID = #{proId}
+    </update>
+</mapper>
