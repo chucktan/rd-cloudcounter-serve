@@ -11,6 +11,8 @@ public class ProListVo {
 
     private String productID;
 
+    private String productName;
+
     private String proImgUrl;
 
     private Integer viewNum;
@@ -60,6 +62,14 @@ public class ProListVo {
 
     public void setApplyNum(Integer applyNum) {
         this.applyNum = applyNum;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public List<ProDetailsVo> getProductDetailList() {

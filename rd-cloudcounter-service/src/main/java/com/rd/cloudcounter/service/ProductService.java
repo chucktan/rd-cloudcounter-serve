@@ -31,6 +31,13 @@ public interface ProductService {
      */
     public ProListVo queryProInfoById(String proId);
 
+    /**
+     *  根据产品Id查询产品主信息
+     * @param proId
+     * @return
+     */
+    public ProductInfo queryProById(String proId);
+
 
     /**
      * 根据产品Id更新产品状态（是否有效）

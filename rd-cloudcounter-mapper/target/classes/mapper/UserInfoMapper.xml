@@ -7,6 +7,7 @@
     -->
     <id column="userID" property="userID" jdbcType="VARCHAR" />
     <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="userImgUrl" property="userImgUrl" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />

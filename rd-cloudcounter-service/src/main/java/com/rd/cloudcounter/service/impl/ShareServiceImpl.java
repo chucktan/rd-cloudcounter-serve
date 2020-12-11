@@ -2,8 +2,10 @@ package com.rd.cloudcounter.service.impl;
 
 
 import com.rd.cloudcounter.mapper.ShareInfoMapper;
+import com.rd.cloudcounter.mapper.ShareMapperCustom;
 import com.rd.cloudcounter.pojo.ShareInfo;
 import com.rd.cloudcounter.pojo.bo.ShareBo;
+import com.rd.cloudcounter.pojo.vo.ShareInfoVo;
 import com.rd.cloudcounter.service.BaseService;
 import com.rd.cloudcounter.service.ShareService;
 import org.n3r.idworker.Sid;
@@ -27,6 +29,9 @@ public class ShareServiceImpl extends BaseService implements ShareService {
     private ShareInfoMapper shareInfoMapper;
 
     @Autowired
+    private ShareMapperCustom shareMapperCustom;
+
+    @Autowired
     private Sid sid;
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -39,6 +44,9 @@ public class ShareServiceImpl extends BaseService implements ShareService {
         shareInfo.setShareid(shareId);
         shareInfo.setShareuserid(shareBo.getShareUserId());
         shareInfo.setSharedmangerid(shareBo.getShareManagerId());
+        shareInfo.setApplynum(APPLYNUM);
+        shareInfo.setClicknum(CLICKNUM);
+        shareInfo.setShareNum(FIRSTSHARENUM);
         //TDOD 设置分享链接
         shareInfo.setSharedurl(shareBo.getSharedUrl());
 
@@ -54,11 +62,29 @@ public class ShareServiceImpl extends BaseService implements ShareService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ShareInfo> queryShareByUserId(String UserId) {
-        Example shareInfoExp = new Example(ShareInfo.class);
-        Example.Criteria criteria =  shareInfoExp.createCriteria();
-        criteria.andEqualTo("shareUserID",UserId);
+    public List<ShareInfoVo> queryShareByUserId(String UserId) {
 
-        return  shareInfoMapper.selectByExample(shareInfoExp);
+
+        return  shareMapperCustom.getShareList(UserId);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public boolean queryIsShareExist(String userId, String mamnagerId) {
+        Example shareExp = new Example(ShareInfo.class);
+        Example.Criteria criteria =  shareExp.createCriteria();
+        criteria.andEqualTo("shareUserID",userId);
+        criteria.andEqualTo("sharedMangerID",mamnagerId);
+
+        ShareInfo result =  shareInfoMapper.selectOneByExample(shareExp);
+
+        return result == null?false:true;
+    }
+
+    @Override
+    public boolean updateShareNum(String userId, String managerId, Integer incNum) {
+        int result =  shareMapperCustom.incShareNum(userId,managerId,incNum);
+
+        return  result ==1?true:false;
     }
 }

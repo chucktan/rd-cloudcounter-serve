@@ -20,6 +20,13 @@ public class UserInfo {
     @Column(name = "userName")
     private String userName;
 
+
+    /**
+     * 用户名称
+     */
+    @Column(name = "password")
+    private String password;
+
     /**
      * 用户头像
      */
@@ -174,5 +181,13 @@ public class UserInfo {
      */
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

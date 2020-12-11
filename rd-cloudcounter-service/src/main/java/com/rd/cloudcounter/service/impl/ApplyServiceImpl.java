@@ -3,9 +3,11 @@ package com.rd.cloudcounter.service.impl;
 import com.rd.cloudcounter.enums.ApplyState;
 import com.rd.cloudcounter.enums.ApplyType;
 import com.rd.cloudcounter.mapper.ApplyInfoMapper;
+import com.rd.cloudcounter.mapper.ApplyMapperCustom;
 import com.rd.cloudcounter.mapper.ProductMapperCustom;
 import com.rd.cloudcounter.pojo.ApplyInfo;
 import com.rd.cloudcounter.pojo.bo.ApplyBo;
+import com.rd.cloudcounter.pojo.vo.ApplyVo;
 import com.rd.cloudcounter.service.ApplyService;
 import com.rd.cloudcounter.service.BaseService;
 import org.n3r.idworker.Sid;
@@ -17,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author
@@ -33,6 +37,9 @@ public class ApplyServiceImpl  extends BaseService implements ApplyService {
     private ProductMapperCustom productMapperCustom;
 
     @Autowired
+    private ApplyMapperCustom applyMapperCustom;
+
+    @Autowired
     private Sid sid;
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -46,7 +53,7 @@ public class ApplyServiceImpl  extends BaseService implements ApplyService {
 
         //2.copy其他变量
         BeanUtils.copyProperties(applyBo,applyInfo);
-
+        
         applyInfo.setApttypename(ApplyType.getValue(applyBo.getApttype()));
         applyInfo.setState(ApplyState.APPLYING.type);
         applyInfo.setCreatedBy(ADMIN);
@@ -71,14 +78,12 @@ public class ApplyServiceImpl  extends BaseService implements ApplyService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ApplyInfo> queryApplyList(String userId, Integer state) {
-        Example applyExp = new Example(ApplyInfo.class);
-        Example.Criteria criteria =  applyExp.createCriteria();
-        criteria.andEqualTo("applyUserID",userId);
-        criteria.andEqualTo("state",state);
+    public List<ApplyVo> queryApplyList(String userId, Integer state) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
+        map.put("state",state);
 
-        return  applyInfoMapper.selectByExample(applyExp);
-
+       return  applyMapperCustom.getApplyList(map);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

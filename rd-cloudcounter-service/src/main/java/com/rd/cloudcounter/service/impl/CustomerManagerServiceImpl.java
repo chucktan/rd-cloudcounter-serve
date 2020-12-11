@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 
@@ -40,6 +40,7 @@ public class CustomerManagerServiceImpl  extends BaseService implements Customer
         //2.copy
         BeanUtils.copyProperties(managerBo,customerManager);
 
+        customerManager.setVisitnum(VISITNUM);
         customerManager.setCreatedBy(ADMIN);
         customerManager.setCreatedTime(new Date());
 
@@ -64,6 +65,29 @@ public class CustomerManagerServiceImpl  extends BaseService implements Customer
 
         customerManager.setUpdatedBy(managerId);
         customerManager.setUpdatedTime(new Date());
-        customerManagerMapper.updateByPrimaryKey(customerManager);
+        customerManagerMapper.updateByPrimaryKeySelective(customerManager);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public CustomerManager queryCusManagerByBankUserId(String bankUserId) {
+        Example CMExample = new Example(CustomerManager.class);
+        Example.Criteria criteria = CMExample.createCriteria();
+        criteria.andEqualTo("bankUserID",bankUserId);
+        CustomerManager result = customerManagerMapper.selectOneByExample(CMExample);
+
+        return  result;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public boolean deleteCusManagerByBankUserId(String bankUserId) {
+        Example CMExample = new Example(CustomerManager.class);
+        Example.Criteria criteria = CMExample.createCriteria();
+        criteria.andEqualTo("bankUserID",bankUserId);
+
+       int result =  customerManagerMapper.deleteByExample(CMExample);
+
+       return  result==1?true:false;
     }
 }

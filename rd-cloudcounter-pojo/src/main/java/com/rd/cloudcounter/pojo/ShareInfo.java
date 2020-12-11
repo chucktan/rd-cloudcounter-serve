@@ -33,6 +33,12 @@ public class ShareInfo {
     private String sharedUrl;
 
     /**
+     * 总分享次数
+     */
+    @Column(name = "shareNum")
+    private Integer shareNum;
+
+    /**
      * 点击次数
      */
     @Column(name = "clickNum")
@@ -156,6 +162,24 @@ public class ShareInfo {
      */
     public void setClicknum(Integer clicknum) {
         this.clickNum = clicknum;
+    }
+
+    /**
+     * 获取总分享次数
+     *
+     * @return shareNum - 申请次数
+     */
+    public Integer getShareNum() {
+        return shareNum;
+    }
+
+    /**
+     * 设置总分享次数
+     *
+     * @param shareNum 申请次数
+     */
+    public void setShareNum(Integer shareNum) {
+        this.shareNum = shareNum;
     }
 
     /**

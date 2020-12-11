@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "wxshare",
+      "type": "com.rd.cloudcounter.resource.WXShare",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    }
+  ],
+  "properties": [
+    {
+      "name": "wxshare.app-id",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    },
+    {
+      "name": "wxshare.app-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    },
+    {
+      "name": "wxshare.jssdk-accesstoken-url",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    },
+    {
+      "name": "wxshare.jssdk-getticket-url",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    }
+  ],
+  "hints": []
+}

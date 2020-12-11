@@ -37,6 +37,7 @@
 
     <resultMap id="proDetailsVo" type="com.rd.cloudcounter.pojo.vo.ProListVo">
         <id column="productID" property="productID" jdbcType="VARCHAR" />
+        <result column="productName" property="productName" jdbcType="VARCHAR" />
         <result column="proImgUrl" property="proImgUrl" jdbcType="VARCHAR" />
         <result column="viewNum" property="viewNum" jdbcType="INTEGER" />
         <result column="shareNum" property="shareNum" jdbcType="INTEGER" />
@@ -54,6 +55,7 @@
         SELECT
             pi.productID,
             pi.proImgUrl,
+            pi.productName,
             pi.viewNum,
             pi.shareNum,
             pi.applyNum,
@@ -69,7 +71,7 @@
             AND pi.isValid = '1'
             AND pd.isValid = '1'
             AND pi.productID = #{paramsMap.proId}
-            ORDER BY pd.intrID asc
+            ORDER BY (pd.intrID+0) asc
     </select>
 
     <update id="incProShareNum">

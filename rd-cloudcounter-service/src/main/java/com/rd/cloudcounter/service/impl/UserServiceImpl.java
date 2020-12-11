@@ -5,6 +5,7 @@ import com.rd.cloudcounter.pojo.UserInfo;
 import com.rd.cloudcounter.pojo.bo.UserInfoBo;
 import com.rd.cloudcounter.service.BaseService;
 import com.rd.cloudcounter.service.UserService;
+import com.rd.cloudcounter.utils.MD5Utils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,12 @@ public class UserServiceImpl   extends BaseService implements UserService  {
         user.setUserid(userId);
 
         user.setUsername(userInfoBo.getUserName());
+        try {
+            user.setPassword(MD5Utils.getMD5Str(userInfoBo.getPassword()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
 //        user.setUserimgurl(userInfoBo.getUserImgUrl());
 
         user.setCreatedBy(ADMIN);
@@ -49,11 +56,12 @@ public class UserServiceImpl   extends BaseService implements UserService  {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public UserInfo queryUserForLogin(String userName) {
+    public UserInfo queryUserForLogin(String userName,String password) {
 
         Example userExample = new Example(UserInfo.class);
         Example.Criteria userCriteria =  userExample.createCriteria();
         userCriteria.andEqualTo("userName",userName);
+        userCriteria.andEqualTo("password",password);
 
         UserInfo userResult = userInfoMapper.selectOneByExample(userExample);
 

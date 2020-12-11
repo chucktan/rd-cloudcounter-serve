@@ -3,7 +3,6 @@ package com.rd.cloudcounter.mapper;
 import com.rd.cloudcounter.pojo.vo.ProListVo;
 import com.rd.cloudcounter.pojo.vo.ProInfoVo;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Property;
 
 import java.util.List;
 import java.util.Map;

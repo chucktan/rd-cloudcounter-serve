@@ -66,6 +66,7 @@ public class ProductServiceImpl extends BaseService implements ProductService {
     @Override
     public void updateProIsValid(String proId,Integer isValid) {
 
+
         //更新产品主表信息
         ProductInfo productInfo = new ProductInfo();
         productInfo.setProductid(proId);
@@ -112,5 +113,14 @@ public class ProductServiceImpl extends BaseService implements ProductService {
         //TODO：须整合redis 分布式锁zooker
         int result = productMapperCustom.incProApplyNum(proId,incNum);
         return  result == 1?true:false;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public ProductInfo queryProById(String proId) {
+        ProductInfo proInfo = new ProductInfo();
+        proInfo.setProductid(proId);
+
+       return  productInfoMapper.selectByPrimaryKey(proInfo);
     }
 }

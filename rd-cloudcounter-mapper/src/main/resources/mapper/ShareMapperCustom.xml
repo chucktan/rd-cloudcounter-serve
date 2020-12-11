@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rd.cloudcounter.mapper.ShareMapperCustom" >
+    <resultMap id="shareVo" type="com.rd.cloudcounter.pojo.vo.ShareInfoVo" >
+
+        <id column="shareId" property="shareId" jdbcType="VARCHAR" />
+        <result column="shareNum" property="shareNum" jdbcType="INTEGER" />
+        <result column="clickNum" property="clickNum" jdbcType="INTEGER" />
+        <result column="applyNum" property="applyNum" jdbcType="INTEGER" />
+        <result column="managerName" property="managerName" jdbcType="VARCHAR" />
+        <result column="photoImgUrl" property="managerPhotoImgUrl" jdbcType="VARCHAR" />
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="getShareList" resultMap="shareVo" parameterType="String">
+    SELECT
+        si.shareId,
+        cm.managerName,
+        cm.photoImgUrl,
+        si.clickNum,
+        si.applyNum,
+        si.shareNum,
+        si.created_time
+    FROM
+        share_info si,
+        customer_manager cm
+    WHERE
+        si.sharedMangerID = cm.managerID
+        AND si.shareUserID = #{userId}
+    </select>
+
+    <update id="incShareNum">
+        UPDATE share_info
+        SET shareNum = shareNum + #{incSum}
+        WHERE
+	    sharedMangerID = #{managerId}
+	    AND
+	    shareUserID = #{userId}
+    </update>
+</mapper>

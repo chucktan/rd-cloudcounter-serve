@@ -2,6 +2,7 @@ package com.rd.cloudcounter.service;
 
 import com.rd.cloudcounter.pojo.ApplyInfo;
 import com.rd.cloudcounter.pojo.bo.ApplyBo;
+import com.rd.cloudcounter.pojo.vo.ApplyVo;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface ApplyService {
      * @param userId
      * @param state
      */
-    public List<ApplyInfo> queryApplyList(String userId, Integer state);
+    public List<ApplyVo> queryApplyList(String userId, Integer state);
 
     /**
      * 创建产品申请信息相关

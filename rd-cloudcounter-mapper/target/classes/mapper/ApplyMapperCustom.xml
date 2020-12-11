@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rd.cloudcounter.mapper.ApplyMapperCustom" >
+    <resultMap id="applyVo" type="com.rd.cloudcounter.pojo.vo.ApplyVo" >
+
+        <id column="applyId" property="applyId" jdbcType="VARCHAR" />
+        <result column="productName" property="productName" jdbcType="VARCHAR" />
+        <result column="intrImgUrl" property="intrImgUrl" jdbcType="VARCHAR" />
+        <result column="aptTime" property="aptTime" jdbcType="VARCHAR" />
+
+    </resultMap>
+
+    <select id="getApplyList" resultMap="applyVo" parameterType="Map">
+    SELECT
+        ai.applyId,
+        pi.productName,
+        pi.intrImgUrl,
+        ai.aptTime
+    FROM
+        apply_info ai,
+        product_info pi
+    WHERE
+        ai.applyProID = pi.productID
+        AND ai.applyUserID = #{paramsMap.userId}
+        AND ai.state = #{paramsMap.state}
+    </select>
+
+
+</mapper>

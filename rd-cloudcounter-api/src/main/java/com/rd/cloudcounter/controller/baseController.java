@@ -14,4 +14,6 @@ public class baseController {
     public  static  final  int HTTP_OK_STATE = 200;
     //浏览、分享、申请增加变量
     public  static  final  int INCNUM = 1;
+    //密码长度
+    public  static  final  int PWD_SIZE = 6;
 }

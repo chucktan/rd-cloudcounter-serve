@@ -31,6 +31,8 @@ public class CustomerManager {
      */
     private String title;
 
+    private String phone;
+
     /**
      * 头像
      */
@@ -53,7 +55,7 @@ public class CustomerManager {
      * 访问总量
      */
     @Column(name = "visitNum")
-    private String visitNum;
+    private Integer visitNum;
 
     /**
      * 活跃时间
@@ -217,7 +219,7 @@ public class CustomerManager {
      *
      * @return visitNum - 访问总量
      */
-    public String getVisitnum() {
+    public Integer getVisitnum() {
         return visitNum;
     }
 
@@ -226,7 +228,7 @@ public class CustomerManager {
      *
      * @param visitnum 访问总量
      */
-    public void setVisitnum(String visitnum) {
+    public void setVisitnum(Integer visitnum) {
         this.visitNum = visitnum;
     }
 
@@ -318,5 +320,13 @@ public class CustomerManager {
      */
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -20,5 +20,5 @@ public interface UserService {
      * @param userName
      * @return
      */
-    public UserInfo  queryUserForLogin(String userName);
+    public UserInfo  queryUserForLogin(String userName,String password);
 }

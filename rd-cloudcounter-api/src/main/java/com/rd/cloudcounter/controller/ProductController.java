@@ -96,5 +96,20 @@ public class ProductController extends  baseController {
         return  RDJSONResult.ok();
     }
 
+    @ApiOperation(value = "获取产品主信息",notes = "获取产品主信息",httpMethod = "POST")
+    @PostMapping("/proInfo")
+    public RDJSONResult proInfo(
+            @ApiParam(name = "proId",value = "产品ID",required = true)
+            @RequestParam String proId){
+
+        if (StringUtils.isBlank(proId)){
+            return  RDJSONResult.errorMsg("产品ID不能为空");
+        }
+
+        ProductInfo proInfo = productService.queryProById(proId);
+
+        return  RDJSONResult.ok(proInfo);
+    }
+
 
 }

@@ -7,6 +7,7 @@ C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\m
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\Sid.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\RandomCodeStrategy.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\strategy\DefaultWorkerIdStrategy.java
+C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\com\rd\cloudcounter\utils\MD5Utils.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\com\rd\cloudcounter\utils\JsonUtils.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\Code.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\InvalidSystemClock.java
@@ -19,6 +20,7 @@ C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\m
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\com\rd\cloudcounter\enums\ApplyState.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\com\rd\cloudcounter\enums\YesOrNo.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\utils\Props.java
+C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\com\rd\cloudcounter\utils\WeChatUtil.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\strategy\DefaultRandomCodeStrategy.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\org\n3r\idworker\strategy\FileLock.java
 C:\Users\Administrator\IdeaProjects\rd-cloudcounter\rd-cloudcounter-common\src\main\java\com\rd\cloudcounter\utils\MobileEmailUtils.java

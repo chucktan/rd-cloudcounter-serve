@@ -9,6 +9,7 @@
     <result column="shareUserID" property="shareUserID" jdbcType="VARCHAR" />
     <result column="sharedMangerID" property="sharedMangerID" jdbcType="VARCHAR" />
     <result column="sharedUrl" property="sharedUrl" jdbcType="VARCHAR" />
+    <result column="shareNum" property="shareNum" jdbcType="INTEGER" />
     <result column="clickNum" property="clickNum" jdbcType="INTEGER" />
     <result column="applyNum" property="applyNum" jdbcType="INTEGER" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />

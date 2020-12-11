@@ -28,4 +28,19 @@ public interface CustomerManagerService {
      * @param photoImgUrl
      */
     public void updateManagerFace(String managerId,String photoImgUrl);
+
+    /**
+     * 根据行内员工ID查询客户经理信息
+     * @param bankUserId
+     * @return
+     */
+    public CustomerManager queryCusManagerByBankUserId(String bankUserId);
+
+
+    /**
+     * 根据行内员工ID删除客户经理信息
+     * @param bankUserId
+     * @return
+     */
+    public  boolean deleteCusManagerByBankUserId(String bankUserId);
 }

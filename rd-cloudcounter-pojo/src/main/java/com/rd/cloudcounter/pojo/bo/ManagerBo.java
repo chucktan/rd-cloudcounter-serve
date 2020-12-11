@@ -22,6 +22,9 @@ public class ManagerBo {
     @ApiModelProperty(value = "客户经理行内职务",name = "title",example = "客户经理",required = true)
     private String title;
 
+    @ApiModelProperty(value = "客户经理电话",name = "phone",example = "189287347xx",required = true)
+    private String phone;
+
     @ApiModelProperty(value = "所属网点ID",name = "belongorgid",example = "",required = true)
     private String belongorgid;
 
@@ -68,5 +71,13 @@ public class ManagerBo {
 
     public void setBelongorg(String belongorg) {
         this.belongorg = belongorg;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

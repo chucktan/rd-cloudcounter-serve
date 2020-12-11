@@ -10,9 +10,10 @@
     <result column="managerName" property="managerName" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="photoImgUrl" property="photoImgUrl" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="belongOrgID" property="belongOrgID" jdbcType="VARCHAR" />
     <result column="belongOrg" property="belongOrg" jdbcType="VARCHAR" />
-    <result column="visitNum" property="visitNum" jdbcType="VARCHAR" />
+    <result column="visitNum" property="visitNum" jdbcType="INTEGER" />
     <result column="activeTime" property="activeTime" jdbcType="TIMESTAMP" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />

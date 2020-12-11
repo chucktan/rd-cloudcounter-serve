@@ -3,6 +3,7 @@ package com.rd.cloudcounter.controller;
 import com.rd.cloudcounter.enums.ApplyState;
 import com.rd.cloudcounter.pojo.ApplyInfo;
 import com.rd.cloudcounter.pojo.bo.ApplyBo;
+import com.rd.cloudcounter.pojo.vo.ApplyVo;
 import com.rd.cloudcounter.service.ApplyService;
 import com.rd.cloudcounter.utils.MobileEmailUtils;
 import com.rd.cloudcounter.utils.RDJSONResult;
@@ -39,7 +40,7 @@ public class ApplyController extends  baseController {
             return  RDJSONResult.errorMsg("申请人ID|申请状态不能为空");
         }
 
-        List<ApplyInfo> resList = applyService.queryApplyList(userId,state);
+        List<ApplyVo> resList = applyService.queryApplyList(userId,state);
 
         return  RDJSONResult.ok(resList);
     }
