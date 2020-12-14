@@ -9,6 +9,7 @@
     <result column="userName" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="userImgUrl" property="userImgUrl" jdbcType="VARCHAR" />
+    <result column="openID" property="openID" jdbcType="VARCHAR" />
     <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />

@@ -16,6 +16,9 @@ public class WXShare {
     private  String appSecret;
     private  String jssdkAccesstokenUrl;
     private  String jssdkGetticketUrl;
+    private  String userAuthorizeGetcodeUrl;
+    private  String userAuthorizeAccesstokenUrl;
+    private  String userAuthorizeGetuserinfoUrl;
 
     public String getAppId() {
         return appId;
@@ -47,5 +50,29 @@ public class WXShare {
 
     public void setJssdkGetticketUrl(String jssdkGetticketUrl) {
         this.jssdkGetticketUrl = jssdkGetticketUrl;
+    }
+
+    public String getUserAuthorizeGetcodeUrl() {
+        return userAuthorizeGetcodeUrl;
+    }
+
+    public void setUserAuthorizeGetcodeUrl(String userAuthorizeGetcodeUrl) {
+        this.userAuthorizeGetcodeUrl = userAuthorizeGetcodeUrl;
+    }
+
+    public String getUserAuthorizeAccesstokenUrl() {
+        return userAuthorizeAccesstokenUrl;
+    }
+
+    public void setUserAuthorizeAccesstokenUrl(String userAuthorizeAccesstokenUrl) {
+        this.userAuthorizeAccesstokenUrl = userAuthorizeAccesstokenUrl;
+    }
+
+    public String getUserAuthorizeGetuserinfoUrl() {
+        return userAuthorizeGetuserinfoUrl;
+    }
+
+    public void setUserAuthorizeGetuserinfoUrl(String userAuthorizeGetuserinfoUrl) {
+        this.userAuthorizeGetuserinfoUrl = userAuthorizeGetuserinfoUrl;
     }
 }

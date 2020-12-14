@@ -26,6 +26,21 @@
       "name": "wxshare.jssdk-getticket-url",
       "type": "java.lang.String",
       "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    },
+    {
+      "name": "wxshare.user-authorize-accesstoken-url",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    },
+    {
+      "name": "wxshare.user-authorize-getcode-url",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
+    },
+    {
+      "name": "wxshare.user-authorize-getuserinfo-url",
+      "type": "java.lang.String",
+      "sourceType": "com.rd.cloudcounter.resource.WXShare"
     }
   ],
   "hints": []

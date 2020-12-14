@@ -2,6 +2,7 @@ package com.rd.cloudcounter.service.impl;
 
 import com.rd.cloudcounter.resource.WXShare;
 import com.rd.cloudcounter.service.WeChatService;
+import com.rd.cloudcounter.utils.JsonUtils;
 import com.rd.cloudcounter.utils.WeChatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,37 @@ public class WeChatServiceImpl implements WeChatService {
         }
 
         return map;
+    }
+
+
+    @Override
+    public String userAuthorize(String redirectUrl) {
+
+        String jsonResult = null;
+
+        try {
+            //1.用户同意授权，获取code
+            String code = WeChatUtil.getUserAuthorizeCode(wxShare.getUserAuthorizeGetcodeUrl(),wxShare.getAppId(),redirectUrl);
+            //2.通过code换取网页授权access_token
+            String accessCodeResult = WeChatUtil.getUserAuthorizeAccessToken(wxShare.getUserAuthorizeAccesstokenUrl(),wxShare.getAppId(),wxShare.getAppSecret(),code);
+
+            Map accessCodeMap = JsonUtils.jsonToPojo(accessCodeResult,Map.class);
+            if (accessCodeMap != null){
+                String accessToken = (String) accessCodeMap.get("access_token");
+                String  openId =  (String) accessCodeMap.get("openid");
+
+                //3.拉取用户信息(需scope为 snsapi_userinfo)
+                jsonResult =  WeChatUtil.getUserAuthorizeUserInfo(wxShare.getUserAuthorizeGetuserinfoUrl(),accessToken,openId);
+            }
+
+
+        }catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return jsonResult;
+
     }
 
 

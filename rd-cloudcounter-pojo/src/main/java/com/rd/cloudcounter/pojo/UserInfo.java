@@ -34,6 +34,13 @@ public class UserInfo {
     private String userImgUrl;
 
     /**
+     * 用户头像
+     */
+    @Column(name = "openID")
+    private String openID;
+
+
+    /**
      * 创建人
      */
     @Column(name = "CREATED_BY")
@@ -189,5 +196,23 @@ public class UserInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * 微信openID
+     *
+     * @return openID - 微信openID
+     */
+    public String getOpenID() {
+        return openID;
+    }
+
+    /**
+     * 设置微信openID
+     *
+     * @param openid 微信openID
+     */
+    public void setOpenID(String openid) {
+        this.openID = openid;
     }
 }

@@ -21,4 +21,11 @@ public interface UserService {
      * @return
      */
     public UserInfo  queryUserForLogin(String userName,String password);
+
+    /**
+     * 检测用户是否已经授权
+     * @param openId
+     * @return
+     */
+    public UserInfo queryUserByOpenId(String openId);
 }

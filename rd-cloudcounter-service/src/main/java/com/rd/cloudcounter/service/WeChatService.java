@@ -9,9 +9,16 @@ import java.util.Map;
 public interface WeChatService {
 
     /**
-     * 微信API
+     * 微信分享API
      * @param url
      * @return
      */
     public Map initJSSDKConfig(String url);
+
+    /**
+     * 微信网页授权
+     * @param url
+     * @return
+     */
+    public String userAuthorize (String url);
 }

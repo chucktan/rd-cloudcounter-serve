@@ -24,8 +24,11 @@ public class UserInfoBo {
 
 
     //TODO 微信获取用户头像的方法未知，须整改
-//    @ApiModelProperty(value = "用户头像",name = "userImgUrl",example = "",required = true)
-//    private String userImgUrl;
+    @ApiModelProperty(value = "用户头像",name = "userImgUrl",example = "",required = true)
+    private String userImgUrl;
+
+    @ApiModelProperty(value = "微信openID",name = "openID",example = "",required = true)
+    private String openID;
 
     public String getUserName() {
         return userName;
@@ -49,5 +52,21 @@ public class UserInfoBo {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getUserImgUrl() {
+        return userImgUrl;
+    }
+
+    public void setUserImgUrl(String userImgUrl) {
+        this.userImgUrl = userImgUrl;
+    }
+
+    public String getOpenID() {
+        return openID;
+    }
+
+    public void setOpenID(String openID) {
+        this.openID = openID;
     }
 }

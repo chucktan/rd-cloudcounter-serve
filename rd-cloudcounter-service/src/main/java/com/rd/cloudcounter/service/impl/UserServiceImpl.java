@@ -39,11 +39,13 @@ public class UserServiceImpl   extends BaseService implements UserService  {
         user.setUserid(userId);
 
         user.setUsername(userInfoBo.getUserName());
-        try {
-            user.setPassword(MD5Utils.getMD5Str(userInfoBo.getPassword()));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        user.setUserimgurl(userInfoBo.getUserImgUrl());
+        user.setOpenID(userInfoBo.getOpenID());
+//        try {
+//            user.setPassword(MD5Utils.getMD5Str(userInfoBo.getPassword()));
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
 //        user.setUserimgurl(userInfoBo.getUserImgUrl());
 
@@ -67,5 +69,19 @@ public class UserServiceImpl   extends BaseService implements UserService  {
 
         return  userResult;
 
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public UserInfo queryUserByOpenId(String openId) {
+
+
+        Example userExample = new Example(UserInfo.class);
+        Example.Criteria userCriteria =  userExample.createCriteria();
+        userCriteria.andEqualTo("openID",openId);
+
+        UserInfo userResult = userInfoMapper.selectOneByExample(userExample);
+
+        return  userResult;
     }
 }

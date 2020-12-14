@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -16,10 +17,10 @@ import java.util.Map;
  */
 public class WeChatUtil {
 
-    public  static  final  String TOKEN = "sckt";
+    public  static  final  String TOKEN = "rdbank"; //开发者自行定义Tooken
 
     /**
-     * 获取access_token
+     * 微信分享接口1-获取access_token
      * @param jssdkAccesstokenUrl
      * @param appId
      * @param appSecret
@@ -45,7 +46,7 @@ public class WeChatUtil {
 
 
     /**
-     * 获取jsapi_ticket
+     * 微信分享接口2-获取jsapi_ticket
      * @param jssdkGetticketUrl
      * @param accessToken
      * @return
@@ -70,14 +71,93 @@ public class WeChatUtil {
 
     }
 
-    private   static  boolean validParams(String signature,String timestamp,String nonce){
-        try {
-//            return SHA1.gen(new String[]{TOKEN,timestamp,nonce}).equals(signature);
-            return  true;
-        }catch (Exception ex){
-            return  false;
+    /**
+     * 验证接口配置
+     * @param signature
+     * @param timestamp
+     * @param nonce
+     * @return
+     */
+
+    public static boolean checkSignature(String signature, String timestamp, String nonce) throws  Exception {
+        // 1.定义数组存放tooken，timestamp,nonce
+        String[] arr = { TOKEN, timestamp, nonce };
+        // 2.对数组进行排序
+        Arrays.sort(arr);
+        // 3.生成字符串
+        StringBuffer sb = new StringBuffer();
+        for (String s : arr) {
+            sb.append(s);
         }
+        // 4.sha1加密,网上均有现成代码
+        String temp = SHA1(sb.toString());
+        // 5.将加密后的字符串，与微信传来的加密签名比较，返回结果
+        return temp.equals(signature);
+
     }
+
+    /**
+     * 用户接入接口1-获取code
+     * @param userAuthorizeCodeUrl
+     * @param appId
+     * @param redirectUrl
+     * @return
+     */
+    public static String getUserAuthorizeCode(String userAuthorizeCodeUrl,String appId,String redirectUrl)
+    {
+        String code = null;
+        //TODO 1.urlEncode(redirectUrl) 必须
+            String encodeUrl = redirectUrl;
+        //获取信息
+        String url = userAuthorizeCodeUrl.replaceAll("APPID",appId).replaceAll("REDIRECT_URL",encodeUrl);
+        String json = postRequestForWeiXinService(url);
+
+        Map map = JsonUtils.jsonToPojo(json,Map.class);
+        if (map != null){
+            code = (String) map.get("code");
+        }
+        return  code;
+    }
+
+    /**
+     * 用户接入接口2-获取accessToken,userOpenId
+     * @param userAuthorizeAccessCodeUrl
+     * @param appId
+     * @param appsecret
+     * @param code
+     * @return
+     */
+    public static String getUserAuthorizeAccessToken(String userAuthorizeAccessCodeUrl,String appId,String appsecret,String code)
+    {
+//        String accessToken = null;
+//        String openId  = null;
+        //获取信息
+        String url = userAuthorizeAccessCodeUrl.replaceAll("APPID",appId).replaceAll("SECRET",appsecret).replaceAll("CODE",code);
+        String json = postRequestForWeiXinService(url);
+
+//        Map map = JsonUtils.jsonToPojo(json,Map.class);
+//        if (map != null){
+//            accessToken = (String) map.get("access_token");
+//            openId =  (String) map.get("openid");
+//        }
+        return  json;
+    }
+
+    /**
+     *用户接入接口4-获取用户信息
+     * @param userAuthorizeUserInfoUrl
+     * @param openId
+     * @return
+     */
+    public static String getUserAuthorizeUserInfo(String userAuthorizeUserInfoUrl,String accessToken,String openId){
+
+        //获取信息
+        String url = userAuthorizeUserInfoUrl.replaceAll("ACCESS_TOKEN",accessToken).replaceAll("OPENID",openId);
+        String json = postRequestForWeiXinService(url);
+
+        return  json;
+    }
+
 
 
     /**
