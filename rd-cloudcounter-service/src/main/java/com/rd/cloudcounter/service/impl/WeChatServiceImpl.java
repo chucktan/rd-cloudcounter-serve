@@ -60,13 +60,13 @@ public class WeChatServiceImpl implements WeChatService {
 
 
     @Override
-    public String userAuthorize(String redirectUrl) {
+    public String userAuthorize(String code) {
 
         String jsonResult = null;
 
         try {
             //1.用户同意授权，获取code
-            String code = WeChatUtil.getUserAuthorizeCode(wxShare.getUserAuthorizeGetcodeUrl(),wxShare.getAppId(),redirectUrl);
+            //  String code = WeChatUtil.getUserAuthorizeCode(wxShare.getUserAuthorizeGetcodeUrl(),wxShare.getAppId(),redirectUrl);
             //2.通过code换取网页授权access_token
             String accessCodeResult = WeChatUtil.getUserAuthorizeAccessToken(wxShare.getUserAuthorizeAccesstokenUrl(),wxShare.getAppId(),wxShare.getAppSecret(),code);
 
@@ -79,15 +79,20 @@ public class WeChatServiceImpl implements WeChatService {
                 jsonResult =  WeChatUtil.getUserAuthorizeUserInfo(wxShare.getUserAuthorizeGetuserinfoUrl(),accessToken,openId);
             }
 
-
         }catch (Exception ex)
         {
             ex.printStackTrace();
         }
 
         return jsonResult;
-
     }
 
+    @Override
+    public String getUserAuthorizeUrl(String redirectUrl) {
+        String url = null;
 
+        url = WeChatUtil.getUserAuthorizeCode(wxShare.getUserAuthorizeGetcodeUrl(),wxShare.getAppId(),redirectUrl);
+
+        return  url;
+    }
 }

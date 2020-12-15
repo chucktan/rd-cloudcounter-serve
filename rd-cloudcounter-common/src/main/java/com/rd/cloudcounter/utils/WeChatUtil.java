@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.DatatypeConverter;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Map;
@@ -106,17 +107,23 @@ public class WeChatUtil {
     public static String getUserAuthorizeCode(String userAuthorizeCodeUrl,String appId,String redirectUrl)
     {
         String code = null;
-        //TODO 1.urlEncode(redirectUrl) 必须
-            String encodeUrl = redirectUrl;
-        //获取信息
-        String url = userAuthorizeCodeUrl.replaceAll("APPID",appId).replaceAll("REDIRECT_URL",encodeUrl);
-        String json = postRequestForWeiXinService(url);
+        String resultUrl = null;
+        try {
+            //encode 必须
+            String encodeUrl = URLEncoder.encode(redirectUrl, "utf-8");
+            //获取信息
+            resultUrl = userAuthorizeCodeUrl.replaceAll("APPID",appId).replaceAll("REDIRECT_URL",encodeUrl);
+//            String json = postRequestForWeiXinService(url);
 
-        Map map = JsonUtils.jsonToPojo(json,Map.class);
-        if (map != null){
-            code = (String) map.get("code");
+//            Map map = JsonUtils.jsonToPojo(json,Map.class);
+//            if (map != null){
+//                code = (String) map.get("code");
+//            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
-        return  code;
+
+        return  resultUrl;
     }
 
     /**

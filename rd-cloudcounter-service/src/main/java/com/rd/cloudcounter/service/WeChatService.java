@@ -16,9 +16,16 @@ public interface WeChatService {
     public Map initJSSDKConfig(String url);
 
     /**
-     * 微信网页授权
-     * @param url
+     * 微信网页授权,获取用户信息
+     * @param code
      * @return
      */
-    public String userAuthorize (String url);
+    public String userAuthorize (String code);
+
+    /**
+     * 根据回调地址，获取网页授权地址
+     *  @param redirectUrl
+     * @return
+     */
+    public String getUserAuthorizeUrl(String redirectUrl);
 }

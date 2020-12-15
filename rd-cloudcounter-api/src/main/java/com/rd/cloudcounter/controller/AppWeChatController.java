@@ -88,19 +88,19 @@ public class AppWeChatController {
     }
 
 
-    @ApiOperation(value = "微信用户授权",notes = "微信用户授权",httpMethod = "GET")
-    @GetMapping("/userAuthor")
-    public RDJSONResult userAuthor(
-            @ApiParam(name = "redirectUrl",value = "微信加密签名",required = true)
-            @RequestParam  String redirectUrl, HttpServletRequest request, HttpServletResponse response
+    @ApiOperation(value = "微信用户授权回调函数",notes = "微信用户授权回调函数",httpMethod = "GET")
+    @GetMapping("/userAuthorCallback")
+    public RDJSONResult userAuthorCallback(
+            @ApiParam(name = "code",value = "微信用户授权code",required = true)
+            @RequestParam  String code, HttpServletRequest request, HttpServletResponse response
             )
     {
-        if (StringUtils.isBlank(redirectUrl)){
-            return  RDJSONResult.errorMsg("回调地址不能为空");
+        if (StringUtils.isBlank(code)){
+            return  RDJSONResult.errorMsg("code不能为空");
         }
 
         //1.获取用户信息
-         String  userInfoJson   = weChatService.userAuthorize(redirectUrl);
+         String  userInfoJson   = weChatService.userAuthorize(code);
 
         Map userInfoMap = JsonUtils.jsonToPojo(userInfoJson,Map.class);
         if (userInfoMap != null){
@@ -126,6 +126,8 @@ public class AppWeChatController {
             //3. 已经授权过，自动登录
             CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(userResult),true);
 
+            //TODO 如何自动登录
+
             return  RDJSONResult.ok(userResult);
 
         }else{
@@ -134,6 +136,20 @@ public class AppWeChatController {
     }
 
 
+    @ApiOperation(value = "获取微信授权地址",notes = "获取微信授权地址",httpMethod = "GET")
+    @GetMapping("/userAuthorUrl")
+    public RDJSONResult userAuthorUrl(
+            @ApiParam(name = "redirectUrl",value = "回调地址",required = true)
+            @RequestParam  String redirectUrl)
+    {
+        if (StringUtils.isBlank(redirectUrl)){
+            return  RDJSONResult.errorMsg("redirectUrl 回调地址不能为空");
+        }
+
+        String  resultUrl =  weChatService.getUserAuthorizeUrl(redirectUrl);
+        return RDJSONResult.ok(resultUrl);
+
+    }
     private UserInfo setNullProperty(UserInfo userResult,String userName,String imgUrl){
 
         userResult.setUsername(userName);

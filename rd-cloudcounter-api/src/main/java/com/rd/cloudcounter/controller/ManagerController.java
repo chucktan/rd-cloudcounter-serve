@@ -1,12 +1,11 @@
 package com.rd.cloudcounter.controller;
 
 import com.rd.cloudcounter.pojo.CustomerManager;
+import com.rd.cloudcounter.pojo.UserInfo;
 import com.rd.cloudcounter.pojo.bo.ManagerBo;
 import com.rd.cloudcounter.resource.FileUpload;
 import com.rd.cloudcounter.service.CustomerManagerService;
-import com.rd.cloudcounter.utils.DateUtil;
-import com.rd.cloudcounter.utils.MobileEmailUtils;
-import com.rd.cloudcounter.utils.RDJSONResult;
+import com.rd.cloudcounter.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -76,15 +75,16 @@ public class ManagerController {
     @PostMapping("/query")
     public RDJSONResult query(
             @ApiParam(name = "managerId",value = "客户经理ID",required = true)
-            @RequestParam String managerId){
+            @RequestParam String managerId,HttpServletRequest request,HttpServletResponse response){
 
         if (StringUtils.isBlank(managerId)){
             return  RDJSONResult.errorMsg("客户经理ID不能为空");
         }
 
         CustomerManager resManager =  managerService.queryCusManagerById(managerId);
+        setNullProperty(resManager);
         //TODO 客户经理信息是否需要存缓存
-
+        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(resManager),true);
         return  RDJSONResult.ok(resManager);
     }
 
@@ -213,5 +213,15 @@ public class ManagerController {
         //TODO后续须修改
 
         return  RDJSONResult.ok();
+    }
+
+    private CustomerManager setNullProperty(CustomerManager customerManager){
+
+        customerManager.setCreatedBy(null);
+        customerManager.setCreatedTime(null);
+        customerManager.setUpdatedBy(null);
+        customerManager.setUpdatedTime(null);
+
+        return  customerManager;
     }
 }
