@@ -40,6 +40,12 @@
               "chnname": "头像"
             },
             {
+              "name": "phone",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "电话"
+            },
+            {
               "name": "belongOrgID",
               "type": "DefaultString",
               "remark": "",
@@ -53,15 +59,18 @@
             },
             {
               "name": "visitNum",
-              "type": "DefaultString",
+              "type": "Integer",
               "remark": "",
-              "chnname": "访问总量"
+              "chnname": "访问总量",
+              "defaultValue": "120",
+              "notNull": false
             },
             {
               "name": "activeTime",
               "type": "DateTime",
               "remark": "",
-              "chnname": "活跃时间"
+              "chnname": "活跃时间",
+              "defaultValue": ""
             },
             {
               "name": "CREATED_BY",
@@ -88,7 +97,15 @@
               "chnname": "更新时间"
             }
           ],
-          "indexs": [],
+          "indexs": [
+            {
+              "name": "PK_CM_BankUserId",
+              "isUnique": true,
+              "fields": [
+                "bankUserID"
+              ]
+            }
+          ],
           "headers": [
             {
               "fieldName": "chnname",
@@ -156,10 +173,22 @@
               "chnname": "用户名称"
             },
             {
+              "name": "password",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "用户密码"
+            },
+            {
               "name": "userImgUrl",
               "type": "ShortString",
               "remark": "",
               "chnname": "用户头像"
+            },
+            {
+              "name": "openID",
+              "type": "DefaultString",
+              "remark": "",
+              "chnname": "微信openID"
             },
             {
               "name": "CREATED_BY",
@@ -680,6 +709,13 @@
               "chnname": "分享链接"
             },
             {
+              "name": "shareNum",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "总分享次数",
+              "defaultValue": "0"
+            },
+            {
               "name": "clickNum",
               "type": "Integer",
               "remark": "",
@@ -871,8 +907,8 @@
                 "y": 382.17424242424244
               },
               {
-                "x": 1171.0947265625,
-                "y": 82.22058823529412
+                "x": 1163.7470703125,
+                "y": 62.17857142857143
               }
             ],
             "sourceAnchor": 2,
@@ -887,11 +923,11 @@
             "controlPoints": [
               {
                 "x": 645.0966796875,
-                "y": 102.33695652173913
+                "y": 92.31
               },
               {
                 "x": 500.9052734375,
-                "y": 32.12931034482759
+                "y": 22.120967741935488
               }
             ],
             "sourceAnchor": 4,
@@ -906,11 +942,11 @@
             "controlPoints": [
               {
                 "x": 974.9033203125,
-                "y": 82.25
+                "y": 72.23
               },
               {
-                "x": 1171.0947265625,
-                "y": 82.22058823529412
+                "x": 1163.7470703125,
+                "y": 62.17857142857143
               }
             ],
             "sourceAnchor": 3,
