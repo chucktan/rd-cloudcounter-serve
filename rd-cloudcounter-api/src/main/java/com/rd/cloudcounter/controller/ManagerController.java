@@ -84,7 +84,7 @@ public class ManagerController {
         CustomerManager resManager =  managerService.queryCusManagerById(managerId);
         setNullProperty(resManager);
         //TODO 客户经理信息是否需要存缓存
-        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(resManager),true);
+        CookieUtils.setCookie(request,response,"manager", JsonUtils.objectToJson(resManager),true);
         return  RDJSONResult.ok(resManager);
     }
 

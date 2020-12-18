@@ -100,7 +100,6 @@ public class UserController extends baseController{
 
     private UserInfo setNullProperty(UserInfo userResult){
 
-        userResult.setUserimgurl(null);
         userResult.setCreatedBy(null);
         userResult.setCreatedTime(null);
         userResult.setUpdatedBy(null);

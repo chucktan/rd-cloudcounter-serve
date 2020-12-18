@@ -41,13 +41,13 @@ public class UserServiceImpl   extends BaseService implements UserService  {
         user.setUsername(userInfoBo.getUserName());
         user.setUserimgurl(userInfoBo.getUserImgUrl());
         user.setOpenID(userInfoBo.getOpenID());
-//        try {
-//            user.setPassword(MD5Utils.getMD5Str(userInfoBo.getPassword()));
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+        try {
+            user.setPassword(MD5Utils.getMD5Str(userInfoBo.getPassword()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-//        user.setUserimgurl(userInfoBo.getUserImgUrl());
+        user.setUserimgurl(userInfoBo.getUserImgUrl());
 
         user.setCreatedBy(ADMIN);
         user.setCreatedTime(new Date());
